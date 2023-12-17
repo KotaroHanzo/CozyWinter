@@ -1,0 +1,92 @@
+[gd_scene load_steps=16 format=3 uid="uid://ctwn54ipve855"]
+
+[ext_resource type="ArrayMesh" uid="uid://diwqdc2671via" path="res://Imphenzia/PixPal/Meshes/Bonzai.res" id="1_q4m1m"]
+[ext_resource type="Shader" uid="uid://dxoncufpd7fij" path="res://Imphenzia/PixPal/Materials/ImphenziaPixPal.tres" id="2_jst5u"]
+[ext_resource type="ArrayMesh" uid="uid://cx6v1y32q6f6s" path="res://Imphenzia/PixPal/Meshes/Cube.res" id="3_ao3s1"]
+[ext_resource type="ArrayMesh" uid="uid://bmbwoa86cmtly" path="res://Imphenzia/PixPal/Meshes/Laptop.res" id="4_wl83w"]
+[ext_resource type="ArrayMesh" uid="uid://bf25wdy4hkn0m" path="res://Imphenzia/PixPal/Meshes/Mirror.res" id="5_e46la"]
+[ext_resource type="ArrayMesh" uid="uid://fapjb6pykoei" path="res://Imphenzia/PixPal/Meshes/Phone.res" id="6_b8o7w"]
+[ext_resource type="ArrayMesh" uid="uid://c5eior48oa4t0" path="res://Imphenzia/PixPal/Meshes/Tin.res" id="7_kowtl"]
+[ext_resource type="PackedScene" uid="uid://csnhuer8cdosm" path="res://untitled.glb" id="8_l40e8"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_aunax"]
+sky_top_color = Color(0.454902, 0.670588, 1, 1)
+sky_horizon_color = Color(0.964706, 0.976471, 1, 1)
+ground_bottom_color = Color(0.454902, 0.670588, 1, 1)
+ground_horizon_color = Color(0.964706, 0.976471, 1, 1)
+
+[sub_resource type="Sky" id="Sky_f74i4"]
+sky_material = SubResource("ProceduralSkyMaterial_aunax")
+
+[sub_resource type="Environment" id="Environment_kttxm"]
+background_mode = 2
+sky = SubResource("Sky_f74i4")
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+sdfgi_read_sky_light = false
+glow_enabled = true
+glow_blend_mode = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l3pyn"]
+render_priority = 0
+shader = ExtResource("2_jst5u")
+shader_parameter/EmissionStrength = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y6b3k"]
+render_priority = 0
+shader = ExtResource("2_jst5u")
+shader_parameter/EmissionStrength = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0vyds"]
+render_priority = 0
+shader = ExtResource("2_jst5u")
+shader_parameter/EmissionStrength = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xeluq"]
+render_priority = 0
+shader = ExtResource("2_jst5u")
+shader_parameter/EmissionStrength = 3.0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Lighting" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
+environment = SubResource("Environment_kttxm")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(-0.364388, -0.71131, -0.601048, 0.27504, -0.698834, 0.660291, -0.889705, 0.0752898, 0.450286, 0, 2.11466, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 40.4
+
+[node name="Bonzai" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.479782, 0.00252439, -0.877384, -0.00212697, 0.999996, 0.00171406, 0.877385, 0.00104377, 0.479785, 0.666, 0, 0.713)
+mesh = ExtResource("1_q4m1m")
+
+[node name="Cube" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.1565)
+mesh = ExtResource("3_ao3s1")
+
+[node name="Laptop" type="MeshInstance3D" parent="."]
+mesh = ExtResource("4_wl83w")
+surface_material_override/0 = SubResource("ShaderMaterial_l3pyn")
+
+[node name="Mirror" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.891797, 0, -0.452435, 0, 1, 0, 0.452435, 0, 0.891798, -5.5759, 0, -9.1393)
+mesh = ExtResource("5_e46la")
+surface_material_override/0 = SubResource("ShaderMaterial_y6b3k")
+
+[node name="Phone" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.748, 0.019, 0)
+mesh = ExtResource("6_b8o7w")
+surface_material_override/0 = SubResource("ShaderMaterial_0vyds")
+
+[node name="Tin" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.691, 0.132, 0)
+mesh = ExtResource("7_kowtl")
+surface_material_override/0 = SubResource("ShaderMaterial_xeluq")
+
+[node name="untitled" parent="." instance=ExtResource("8_l40e8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.86459, 0, 19.3567)
